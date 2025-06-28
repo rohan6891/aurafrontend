@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, ShoppingCart, Info, Heart, Minus, Plus, CreditCard, MapPin, Phone, ArrowRight, X, MessageCircle, Package, BarChart2, Settings, LogOut, Star } from 'lucide-react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { ShoppingCart, Info, Minus, Plus, X, Package, BarChart2, Settings, LogOut, Star } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
-const fadeInStyles = `
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+// const fadeInStyles = `
+//   @keyframes fadeIn {
+//     from { opacity: 0; }
+//     to { opacity: 1; }
+//   }
 
-  @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-  }
+//   @keyframes fadeOut {
+//     from { opacity: 1; }
+//     to { opacity: 0; }
+//   }
 
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in;
-  }
+//   .animate-fade-in {
+//     animation: fadeIn 0.5s ease-in;
+//   }
 
-  .animate-fade-out {
-    animation: fadeOut 0.5s ease-out;
-  }
-`;
+//   .animate-fade-out {
+//     animation: fadeOut 0.5s ease-out;
+//   }
+// `;
 
 const marqueeStyles = `
   @keyframes marquee {
@@ -65,9 +65,9 @@ function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [trackedOrder, setTrackedOrder] = useState<any>(null);
-  const [trackLoading, setTrackLoading] = useState(false);
-  const [trackError, setTrackError] = useState<string | null>(null);
+  // const [trackedOrder, setTrackedOrder] = useState<any>(null);
+  // const [trackLoading, setTrackLoading] = useState(false);
+  // const [trackError, setTrackError] = useState<string | null>(null);
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
