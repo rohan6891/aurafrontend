@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Info, Minus, Plus, X, Package, BarChart2, Settings, LogOut, Star } from 'lucide-react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 
 // const fadeInStyles = `
 //   @keyframes fadeIn {
@@ -69,7 +69,7 @@ function AdminPage() {
   // const [trackLoading, setTrackLoading] = useState(false);
   // const [trackError, setTrackError] = useState<string | null>(null);
 
-  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  // const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   // --- Analytics State ---
   const [analyticsFilter, setAnalyticsFilter] = useState<'monthly' | 'weekly' | 'yearly'>('monthly');
@@ -124,12 +124,12 @@ function AdminPage() {
     }
   }, [adminLoggedIn]);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDateTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setCurrentDateTime(new Date());
+  //   }, 1000);
+  //   return () => clearInterval(timer);
+  // }, []);
 
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -395,8 +395,8 @@ function WelcomePage() {
 }
 
 function MainApp() {
-  const [selectedQuantity, setSelectedQuantity] = useState(30);
-  const [itemQuantity, setItemQuantity] = useState(0);
+  // const [selectedQuantity, setSelectedQuantity] = useState(30);
+  // const [itemQuantity, setItemQuantity] = useState(0);
   const [cartItems, setCartItems] = useState(0);
   const [showCart, setShowCart] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -425,8 +425,8 @@ function MainApp() {
   const [trackedOrder, setTrackedOrder] = useState<any>(null);
   const [trackLoading, setTrackLoading] = useState(false);
   const [trackError, setTrackError] = useState<string | null>(null);
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
@@ -437,7 +437,7 @@ function MainApp() {
     return () => clearInterval(timer);
   }, []);
 
-  const quantityOptions = [30, 60, 90];
+  // const quantityOptions = [30, 60, 90];
 
   const getProductVariants = (image: string): ProductVariant[] => {
     if (image === 'r.jpg') {
@@ -474,52 +474,52 @@ function MainApp() {
     setVariantQuantities(initialQuantities);
   }, [currentProductImage]);
 
-  const handleVariantAddToCart = (variantId: string, baseName: string, price: number) => {
-    const quantityToAdd = variantQuantities[variantId] || 1;
-    if (quantityToAdd < 1) return;
+  // const handleVariantAddToCart = (variantId: string, baseName: string, price: number) => {
+  //   const quantityToAdd = variantQuantities[variantId] || 1;
+  //   if (quantityToAdd < 1) return;
 
-    setCartProducts(prev => {
-      const existingProductIndex = prev.findIndex(p => p.name === `${baseName} (${variantId.split('-')[1].toUpperCase()})`);
-      if (existingProductIndex > -1) {
-        const updatedCart = [...prev];
-        updatedCart[existingProductIndex].quantity += quantityToAdd;
-        return updatedCart;
-      }
-      return [...prev, { name: `${baseName} (${variantId.split('-')[1].toUpperCase()})`, quantity: quantityToAdd, price }];
-    });
+  //   setCartProducts(prev => {
+  //     const existingProductIndex = prev.findIndex(p => p.name === `${baseName} (${variantId.split('-')[1].toUpperCase()})`);
+  //     if (existingProductIndex > -1) {
+  //       const updatedCart = [...prev];
+  //       updatedCart[existingProductIndex].quantity += quantityToAdd;
+  //       return updatedCart;
+  //     }
+  //     return [...prev, { name: `${baseName} (${variantId.split('-')[1].toUpperCase()})`, quantity: quantityToAdd, price }];
+  //   });
 
-    setCartItems(prev => prev + quantityToAdd);
-    // Reset quantity for the added variant
-    setVariantQuantities(prev => ({ ...prev, [variantId]: 0 }));
-  };
+  //   setCartItems(prev => prev + quantityToAdd);
+  //   // Reset quantity for the added variant
+  //   setVariantQuantities(prev => ({ ...prev, [variantId]: 0 }));
+  // };
 
   const handleVariantQuantityChange = (variantId: string, newQuantity: number) => {
     if (newQuantity < 0) return; // Allow quantity to be 0
     setVariantQuantities(prev => ({ ...prev, [variantId]: newQuantity }));
   };
 
-  const handleAddToCart = () => {
-    // This function is no longer directly used for variants, keeping for other contexts if any
-    // or will be removed if not needed elsewhere.
-    // Placeholder logic for default product if needed or just remove.
-    const productName = currentProductImage === 'r.jpg' ? 'VELAR' : currentProductImage === 'g.jpg' ? 'ELIX' : 'Premium Combo';
-    const price = currentProductImage === 'premium-combo.jpg' ? 799 : 205;
+  // const handleAddToCart = () => {
+  //   // This function is no longer directly used for variants, keeping for other contexts if any
+  //   // or will be removed if not needed elsewhere.
+  //   // Placeholder logic for default product if needed or just remove.
+  //   const productName = currentProductImage === 'r.jpg' ? 'VELAR' : currentProductImage === 'g.jpg' ? 'ELIX' : 'Premium Combo';
+  //   const price = currentProductImage === 'premium-combo.jpg' ? 799 : 205;
     
-    setCartProducts(prev => {
-      const existingProduct = prev.find(p => p.name === productName);
-      if (existingProduct) {
-        return prev.map(p => 
-          p.name === productName 
-            ? {...p, quantity: p.quantity + itemQuantity}
-            : p
-        );
-      }
-      return [...prev, { name: productName, quantity: itemQuantity, price }];
-    });
+  //   setCartProducts(prev => {
+  //     const existingProduct = prev.find(p => p.name === productName);
+  //     if (existingProduct) {
+  //       return prev.map(p => 
+  //         p.name === productName 
+  //           ? {...p, quantity: p.quantity + itemQuantity}
+  //           : p
+  //       );
+  //     }
+  //     return [...prev, { name: productName, quantity: itemQuantity, price }];
+  //   });
     
-    setCartItems(prev => prev + itemQuantity);
-    setItemQuantity(0);
-  };
+  //   setCartItems(prev => prev + itemQuantity);
+  //   setItemQuantity(0);
+  // };
 
   const handleRemoveFromCart = (productName: string) => {
     setCartProducts(prev => {
@@ -570,9 +570,9 @@ function MainApp() {
     }
   };
 
-  const handleCheckout = () => {
-    setShowCheckout(true);
-  };
+  // const handleCheckout = () => {
+  //   setShowCheckout(true);
+  // };
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -580,14 +580,14 @@ function MainApp() {
     setShowPayment(true);
   };
 
-  const handlePaymentSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically integrate with a payment gateway
-    alert('Order placed successfully!');
-    setCartItems(0);
-    setShowCheckout(false);
-    setShowPayment(false);
-  };
+  // const handlePaymentSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   // Here you would typically integrate with a payment gateway
+  //   alert('Order placed successfully!');
+  //   setCartItems(0);
+  //   setShowCheckout(false);
+  //   setShowPayment(false);
+  // };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
