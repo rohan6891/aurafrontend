@@ -105,7 +105,7 @@ function AdminPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:5000/api/orders');
+      const response = await fetch('https://aurabackend-q3xn.onrender.com/api/orders');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -148,7 +148,7 @@ function AdminPage() {
   const handleStatusChange = async (newStatus: string) => {
     if (!selectedOrder) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${selectedOrder.id}/status`, {
+      const response = await fetch(`https://aurabackend-q3xn.onrender.com/api/orders/${selectedOrder.id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -706,7 +706,7 @@ function MainApp() {
         };
 
         try {
-          const res = await fetch('http://localhost:5000/api/orders', {
+          const res = await fetch('https://aurabackend-q3xn.onrender.com/api/orders', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -748,7 +748,7 @@ function MainApp() {
     setTrackError(null);
     setTrackedOrder(null);
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${trackingId}`);
+      const response = await fetch(`https://aurabackend-q3xn.onrender.com/api/orders/${trackingId}`);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || `Order tracking failed: ${response.status}`);
